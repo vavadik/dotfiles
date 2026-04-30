@@ -1,0 +1,25 @@
+[credential]
+	helper = 
+	helper = /home/vadim/.dotnet/tools/git-credential-manager
+	credentialStore = gpg
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[alias]
+    # Core
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+    lg = log
+    df = diff
+    dc = diff --cached
+	hist = log --graph --decorate --pretty=format:'%C(auto)%h%d %Cgreen(%ar)%Creset %C(bold blue)%an%Creset %s'
+[push]
+	autoSetupRemote = true
+[user]
+	email = vgalanov@ascendix.com
+	name = Vadim Galanov
+[core]
+	editor = vim
+[init]
+	defaultBranch = master
