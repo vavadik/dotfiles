@@ -1,0 +1,14 @@
+[general]
+import=["~/.config/alacritty/dank-theme.toml"]
+
+[window]
+class = { general = "alacritty.dropdown" }
+padding = { x = 10, y = 10 }
+opacity=0.8
+
+[terminal]
+shell = { program = "tmux", args = ["new-session", "-A", "-s", "main"] }
+
+[font]
+normal = { family = "RobotoMono Nerd Font" }
+size = 12

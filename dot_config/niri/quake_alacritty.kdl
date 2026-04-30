@@ -1,0 +1,19 @@
+spawn-at-startup "alacritty" "--config-file ~/.config/alacritty/alacritty-dropdown.toml"
+
+window-rule {
+    match app-id="^alacritty\\.dropdown$"
+    open-floating true
+    default-floating-position x=0 y=2 relative-to="top"
+    default-window-height { proportion 0.85; }
+    default-column-width  { proportion 0.999; }
+    draw-border-with-background false
+
+    background-effect {
+        xray true
+        blur false
+    }
+}
+
+binds {
+    Mod+grave { spawn "dropdown-toggle-alacritty"; }
+}

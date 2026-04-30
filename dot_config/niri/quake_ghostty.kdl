@@ -1,0 +1,18 @@
+spawn-at-startup "ghostty" "--config-file=/home/vadim/.config/ghostty/dropdown"
+
+window-rule {
+    match app-id="^com\\.mitchellh\\.ghostty\\.dropdown$"
+    open-floating true
+    default-floating-position x=0 y=2 relative-to="top"
+    default-window-height { proportion 0.85; }
+    default-column-width  { proportion 0.999; }
+
+    background-effect {
+        xray true
+        // blur true
+    }
+}
+
+binds {
+    Mod+grave { spawn "dropdown-toggle-ghostty"; }
+}
