@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+APP_ID="alacritty.dropdown"
+
+window=$(niri msg -j windows 2>/dev/null | python3 -c "
+import json, sys
+windows = json.load(sys.stdin)
+w = next((w for w in windows if w['app_id'] == sys.argv[1]), None)
+if w:
+    print(w['id'], w['is_focused'], w['workspace_id'])
+" "$APP_ID")
+
+if [ -z "$window" ]; then
+    alacritty --config-file ~/.config/alacritty/alacritty-dropdown.toml &
+    exit 0
+fi
+
+win_id=$(echo "$window" | cut -d' ' -f1)
+is_focused=$(echo "$window" | cut -d' ' -f2)
+win_workspace_id=$(echo "$window" | cut -d' ' -f3)
+
+if [ "$is_focused" = "True" ]; then
+    niri msg action close-window --id "$win_id"
+else
+    focused_ws=$(niri msg -j workspaces 2>/dev/null | python3 -c "
+import json, sys
+ws = json.load(sys.stdin)
+f = next((w for w in ws if w['is_focused']), None)
+if f:
+    print(f['id'], f['idx'])
+")
+    focused_ws_id=$(echo "$focused_ws" | cut -d' ' -f1)
+    focused_ws_idx=$(echo "$focused_ws" | cut -d' ' -f2)
+
+    if [ "$win_workspace_id" != "$focused_ws_id" ]; then
+        niri msg action move-window-to-workspace --window-id "$win_id" --focus false "$focused_ws_idx"
+    fi
+
+    niri msg action focus-window --id "$win_id"
+fi
