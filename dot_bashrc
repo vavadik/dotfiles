@@ -30,7 +30,7 @@ unset rc
 #	shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
 #	exec fish $LOGIN_OPTION
 #fi
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"
 
 # pnpm
 export PNPM_HOME="/home/vadim/.local/share/pnpm"
