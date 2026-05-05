@@ -1,11 +1,6 @@
 [credential]
-	helper = 
-	helper = /home/vadim/.dotnet/tools/git-credential-manager
 	credentialStore = secretservice
-	helper = 
-	helper = /usr/bin/git-credential-manager
-	helper = /usr/lib/git-core/git-credential-libsecret
-	helper = /usr/lib/git-core/git-credential-libsecret
+	helper = /home/vadim/.dotnet/tools/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [alias]
